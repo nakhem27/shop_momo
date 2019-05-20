@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shop Momo - Customer Care</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <h1 class="display-4">Shop Momo</h1>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+    
+                      <form action="/" method="GET">
+                        <button class="btn btn-light">Home</button>
+                      </form>
+    
+                    </li>
+                    <li class="nav-item active">
+    
+                      <form action="/viewallproducts" method="GET">
+                        <button class="btn btn-light">Shop</button>
+                      </form>
+                      
+                    </li>
+                    <li class="nav-item dropdown">
+                        <button class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Handbags
+                        </button>
+    
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <form action="/rogue" method="GET">
+                            <button class="btn btn-light dropdown-item">Rogue 25</button>
+                          </form>
+                          <form action="/highline" method="GET">
+                              <button class="btn btn-light dropdown-item">Rexy Highline Tote</button>
+                          </form>
+                          <form action="/harmony" method="GET">
+                            <button class="btn btn-light dropdown-item">Harmony Hobo</button>
+                          </form>
+                          <div class="dropdown-divider"></div>
+                          <form action="/viewallhandbags" method="GET">
+                            <button class="btn btn-light dropdown-item">All Handbags</button>
+                          </form>
+                        </div>
+                        
+                    </li>
+                    <li class="nav-item dropdown">
+                      <button class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Bag Charms
+                      </button>
+    
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <form action="/rexyskeleton" method="GET">
+                          <button class="btn btn-light dropdown-item">Rexy Skeleton</button>
+                        </form>
+                        <form action="/rexyoilslick" method="GET">
+                          <button class="btn btn-light dropdown-item">Rexy Oil Slick</button>
+                        </form>
+                        <form action="/rexygold" method="GET">
+                          <button class="btn btn-light dropdown-item">Rexy Gold</button>
+                        </form>
+                        <div class="dropdown-divider"></div>
+                        <form action="/viewallbagcharms" method="GET">
+                          <button class="btn btn-light dropdown-item">All Bag Charms</button>
+                        </form>
+                      </div>
+                    </li>
+    
+                    <li class="nav-item dropdown">
+                      <button class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Wallets
+                      </button>
+    
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <form action="/foldovercardcase" method="GET">
+                          <button class="btn btn-light dropdown-item">Foldover Card Case</button>
+                        </form>
+                        <form action="/rexycardholder" method="GET">
+                          <button class="btn btn-light dropdown-item">Rexy Cardholder</button>
+                        </form>
+                        <form action="/rexyzippywallet" method="GET">
+                          <button class="btn btn-light dropdown-item">Rexy Zippy Wallet</button>
+                        </form>
+                        <div class="dropdown-divider"></div>
+                        <form action="/viewallwallets" method="GET">
+                          <button class="btn btn-light dropdown-item">All Wallets</button>
+                        </form>
+                      </div>
+                    </li>
+    
+                </ul>
+            </div>
+    
+            {#<form class="form-inline my-2 my-lg-0" action="/" method="GET">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-light" type="submit"><img src="{{ url_for('static', filename='img/searchicon.png') }}" width="20" height="20" alt="search"></button>
+            </form>#}
+    
+            <form class="form-inline my-2 my-lg-0" action="/myaccount" method="POST">
+              <button class="btn btn-light"><img src="{{ url_for('static', filename='img/myaccount.jpg') }}" width="25" height="25" alt="myaccount"></button>
+            </form>
+    
+            <form class="form-inline my-2 my-lg-0" action="/wishlist" method="POST">
+              <button class="btn btn-light"><img src="{{ url_for('static', filename='img/heart.png') }}" width="20" height="20" alt="wishlist"></button>
+            </form>
+    
+            <form class="form-inline my-2 my-lg-0" action="/viewcart" method="POST">
+              <button class="btn btn-light"><img src="{{ url_for('static', filename='img/cart.png') }}" width="28" height="28" alt="cart">{{ cart | length }}</button>
+            </form>
+    
+            </nav>
+          </div>
+
+
+      <div class="container-fluid">
+        <div class="row">
+            <div class=".col-md-">
+                <img src="{{ url_for('static', filename='img/about.png') }}" alt="aboutprofilepic" class="p-5">
+            </div>
+            <div class="col m-3">
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link text-success" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Privacy Policy
+                            </button>
+                        </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse {{ showprivacy }}" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <p class="lead">In this policy, we refer to the companies in our corporate group as "Shop Momo", "we", or "us". We value every customer, prospective employee and employee and want you to trust our business and privacy practices. If you have any questions about the content of this policy, we encourage you to contact us as outlined below.</p>
+                            <p>We respect your privacy.</p>
+                            <p>Any and all the information collected on this site will be kept strictly confidential and will not be sold, reused, rented, disclosed, or loaned.</p>
+                            <p>Any information you provide will be held with the utmost care and will not be used in ways that you have not consented to. If you have any questions, please feel free to call +1 (206) 867-5309, e-mail us at customerservice@shopmomo.com, or send a DM to our <a href="https://www.instagram.com/shop_momo_collection" class="text-success">Instagram</a>.</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed text-success" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Shipping Information
+                            </button>
+                        </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse {{ showshipping }}" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <p class="lead">Shipping is only available in the U.S at this time. Sorry for the inconvenience. We hope to ship internationally as we expand.</p>
+                            <p>Free shipping for all orders over $100. We only provide Standard Shipping. Overnight and Express Shipping is unavailable at this time.</p>
+                            <p>Orders are shipped via USPS with tracking. Once an order has been shipped from our warehouse, delivery time is typically 1-5 business days.</p>
+                            <p>Orders are processed M-F 8AM-5PM, PST. There is up to a 10 business day turn around from the time of payment until shipment.</p>
+                            <p>Shop Momo is not responsible for lost or stolen packages - replacements or refunds will not be provided.</p>
+                            <p>Sales and service tax where applicable.</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed text-success" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Returns & Exchanges
+                            </button>
+                        </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse {{ showreturn }}" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <p class="lead">We want you to love your Shop Momo product, but we get that sometimes it doesn’t work out. If you are not satisfied with your purchase, return it to us for free within 30 days for an exchange or a refund in your original form of payment.</p>
+                            <p>Purchases made via PayPal or other third-party payment processors may be returned by mail for a refund to the original account.</p>
+                            <p>Purchases can be returned by mail and must be in new or unused condition.</p>
+                            <p>Fill out the return form included in your order and include it in your package. Attach the prepaid UPS label included with your order to your shipping box and drop the box at a UPS location. Your return or exchange will be processed within 3-5 days of receipt. (Timing of when it will post to your account will vary depending on your bank).</p>
+                            <p>Shop Momo is not responsible for lost or stolen packages - replacements or refunds will not be provided.</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingFour">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed text-success" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Product Care & Repairs
+                            </button>
+                        </h2>
+                        </div>
+                        <div id="collapseFour" class="collapse {{ showrepairs }}" aria-labelledby="headingFour" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <p class="lead">Love your leather, and it’ll love you forever. To help preserve the beauty of your bag over time, we offer free lifetime leather care. We’ll professionally clean and condition your bag. We recommend this service every three months.</p>
+                            <p>There is a one-year warranty on all handbags and wallets. If something happens, let us know and we will do our best to repair it.</p>
+                            <p>It can take four to six weeks from when we receive the item.</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingFive">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed text-success" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Contact Us
+                            </button>
+                        </h2>
+                        </div>
+                        <div id="collapseFive" class="collapse {{ showcontact }}" aria-labelledby="headingFive" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <p class="lead">Need to contact us?</p>
+                            <p>Call Center (M-F, 1PM PST to 1:20 PST): + 1 (206) 867 - 5309</p>
+                            <p>Email: customerservice@shopmomo.com</p>
+                            <p>Send us a DM on <a href="https://www.instagram.com/shop_momo_collection" class="text-success">Instagram</a></p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+        </div>
+
+        {% if listofviewed %}
+        <div class="row bg-light">
+          <p>Recently Viewed</p>
+            <hr class="my-4">
+        </div>
+        <div class="row border-bottom bg-light">
+              <div class="row bg-whitesmoke pl-5 pb-5">
+                  {%for onelist in listofviewed %}
+                  {% for product in allproducts %}
+                  {% if product['id'] == onelist %}
+                  <div class="col">
+                    <div class="photo" width="300">
+                      <form action="/{{ product['routename'] }}" method="GET">
+                        <input type="image" img src="static/img/{{ product['imgname'] }}" width="200" alt="{{ product['imgname'] }}">
+                        <p class="caption">{{product['name']}} - ${{ product['price']}}</p>
+                      </form>
+                    </div>
+              </div>
+              {% endif %}
+              {% endfor %}
+              {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="row border-bottom bg-light">
+            <div class="col">
+              <h6 class="border-bottom pt-5 pb-2">MAIN MENU</h6>
+              <form action="/" method="GET">
+                <button class="btn btn-white">Home</button>
+              </form>
+              <form action="/sitemap" method="GET">
+                  <button class="btn btn-white">Site Map</button>
+              </form>
+              <form action="/momomust" method="GET">
+                <button class="btn btn-white">Shop Momo's Musts</button>
+              </form>
+            </div>
+    
+            <div class="col pb-10">
+              <h6 class="border-bottom pt-5 pb-2">CUSTOMER CARE</h6>
+              <form action="/privacy" method="GET">
+                  <button class="btn btn-white">Privacy Policy</button>
+              </form>
+              <form action="/shippinginformation" method="GET">
+                <button class="btn btn-white">Shipping Information</button>
+              </form>
+              <form action="/returnsandexchanges" method="GET">
+                  <button class="btn btn-white">Returns & Exchanges</button>
+              </form>
+              <form action="/productcare" method="GET">
+                <button class="btn btn-white">Product Care & Repairs</button>
+              </form>
+              <form action="/contactus" method="GET">
+                <button class="btn btn-white">Contact Us</button>
+              </form>
+            </div>
+    
+            <div class="col">
+              <h6 class="border-bottom pt-5 pb-2">MORE</h6>
+              <form action="/about" method="GET">
+                <button class="btn btn-white">About</button>
+              </form>
+              <form action="/searchpage" method="GET">
+                <button class="btn btn-white">Search</button>
+              </form>
+                <a href="https://www.instagram.com/shop_momo_collection" class="text-body"><img src="{{ url_for('static', filename='img/instagram.jpg') }}" height="15">Instagram</a>
+              </div>
+    
+        </div>
+
+        <div class="row">
+            <span><small> © 2019 SHOP MOMO </small></span>
+        </div>
+
+      </div>
+</body>
+</html>
