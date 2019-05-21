@@ -117,16 +117,17 @@ def editaccountinfopage(login_id):
 
     login_id = login_id
     customer_update = customer.query.get(login_id)
+    print(customer_update)
     first_name = customer_update.first_name
     last_name = customer_update.last_name
-    email = customer_update.email
     phone_number = customer_update.phone_number
-    return render_template("editcustomerinfo.html", login_id = login_id, first_name = first_name, last_name = last_name, phone_number = phone_number, email = email, cart = cart)
+    return render_template("editcustomerinfo.html", login_id = login_id, first_name = first_name, last_name = last_name, phone_number = phone_number, cart = cart)
 
-def editaccount():
+def editaccount(login_id):
+    login_id = login_id
     validation_check = customer.validate_edit_customer(request.form)
     if "_flashes" in session.keys() or not validation_check:
-        return redirect("/editcustomerinformation/<login_id>")
+        return redirect("/editcustomerinformation/"+str(login_id)+"")
     else:
         edit_customer = customer.edit_customer(request.form)
         return redirect("/accountinfo")
@@ -176,31 +177,19 @@ def add_address_from_checkout():
 
 #BILLINGADDRESS
 def add_billingid_from_checkout():
-    validation_check = billing_address.validate_shipping(request.form)
+    login_id = session['user_id']
+    validation_check = billing_address.validate_billing(request.form)
     if "_flashes" in session.keys() or not validation_check:
         return redirect("/proceedtocheckout")
     else:
-        new_shipping = billing_address.add_new_shipping(request.form)
+        new_shipping = billing_address.add_billing_shipping(request.form)
         return redirect("/proceedtocheckout")
-
-def add_billing_address():
-    global cart
-    flash("Billing Address Added")
-    return render_template("verifybilling.html")
-
-def edit_billing_address():
-    global cart
-    flash("Billing Address Edited")
-    return render_template("verifybilling.html", cart = cart)
-
-def verify_billing_for_order():
-    global cart
-    return redirect("/vieworder")
 
 #WISHLIST
 def wishlistpage():
     global listofviewed
     global cart
+    global ordertotal
     updaterecently()
     try:
         if session['user_id']:
@@ -213,26 +202,35 @@ def wishlistpage():
         return render_template("loginreg.html")
 
 def addtowishlist(routename):
-    login_id = session['user_id']
-    product_id = request.form["product_id"]
-    user_wishlist = wishlist.query.filter(wishlist.customer_id == login_id).filter(wishlist.product_id == product_id).count()
-    print("Product Id",product_id)
-    print("Login Id ", login_id)
-    print("Wishlist count ", user_wishlist)
+    global listofviewed
+    global cart
+    
+    updaterecently()
+    try:
+        if session['user_id']:
+            login_id = session['user_id']
+            product_id = request.form["product_id"]
+            user_wishlist = wishlist.query.filter(wishlist.customer_id == login_id).filter(wishlist.product_id == product_id).count()
+            print("Product Id",product_id)
+            print("Login Id ", login_id)
+            print("Wishlist count ", user_wishlist)
 
-    if user_wishlist > 0:
-        flash("Already added to wishlist")
-        return redirect("/"+ str(routename) + "")
-    else: #add to wishlist
-        one_product = db.session.query(product).filter(product.id == product_id).all()
-        add_a_wish = wishlist(
-            customer_id = login_id,
-            product_id = product_id
-        )
-        db.session.add(add_a_wish)
-        db.session.commit()
-        flash("Added to your wishlist")
-        return redirect("/"+ str(routename) + "")
+            if user_wishlist > 0:
+                flash("Already added to wishlist")
+                return redirect("/"+ str(routename) + "")
+            else: #add to wishlist
+                one_product = db.session.query(product).filter(product.id == product_id).all()
+                add_a_wish = wishlist(
+                    customer_id = login_id,
+                    product_id = product_id
+                )
+                db.session.add(add_a_wish)
+                db.session.commit()
+                flash("Added to your wishlist")
+                return redirect("/"+ str(routename) + "")
+    except:
+        flash("Please login or register to continue.")
+        return render_template("loginreg.html")
 
 def deletefromwishlist():
     delete_from_wishlist = wishlist.delete_wish(request.form)
@@ -242,6 +240,7 @@ def deletefromwishlist():
 def addtocart(routename):
     global cart
     global ordertotal
+    
     product_id = request.form["product_id"]
     product_price = request.form["product_price"]
     for item in cart:
@@ -275,18 +274,19 @@ def viewcart():
     session['shipping_id'] = None
     session['billing_id'] = None
     print("Session shipping/billing: ", session['shipping_id'], session['billing_id'])
-    login_id = session['user_id']
+    
     updaterecently()
     allproducts = product.query.all()
     print(ordertotal)
 
     try:
         if session['user_id']:
+            login_id = session['user_id']
             print(cart)
             return render_template("cart.html", cart = cart, listofviewed = listofviewed, allproducts = allproducts, login_id = login_id, ordertotal = ordertotal)
     except:
         flash("Please login or register to continue.")
-        return render_template("loginreg.html")
+        return render_template("loginreg.html", cart = cart)
 
 def checkoutpage():
     login_id = session['user_id']
@@ -306,21 +306,27 @@ def checkoutpage():
 #ORDERPROCESSING
 def verify_shipping_address():
     global cart
+    global ordertotal
     session['shipping_id'] = request.form['verify_shipping_address_id']
+    flash("Shipping Address #" + session['shipping_id'] + " Selected for Order")
     print("shipping id at checkout:", session['shipping_id'])
     return redirect("/proceedtocheckout")
 
 def verify_billing_address():
     global cart
+    global ordertotal
     session['billing_id'] = request.form['verify_billing_address_id']
+    flash("Billing Address #" + session['billing_id'] + " Selected for Order")
     print("billing id at checkout:", session['shipping_id'])
     return redirect("/proceedtocheckout")
 
 def submitordertodb():
     global cart
+    global ordertotal
     login_id = session['user_id']
     shipping_id = session['shipping_id']
     billing_address_id = session['billing_id']
+    order_total = ordertotal
 
     print("right above if statement ", shipping_id)
     if shipping_id == None:
@@ -333,12 +339,12 @@ def submitordertodb():
         add_order = order(
             customer_id = login_id,
             s_address_id = shipping_id,
-            b_address_id = billing_address_id
+            b_address_id = billing_address_id,
+            order_total = order_total
         )
         db.session.add(add_order)
         db.session.commit()
         submitordertodb2()
-        flash("Order Added")
         return redirect("/aftercheckout")
 
 def submitordertodb2():
@@ -367,8 +373,7 @@ def aftercheckout():
     order_id = order_query[len(order_query)-1]
     real_order_id = order_id[0]
     cart = []
-    x = randint(0,20)*100
-    return render_template("aftercheckout.html", first_name = first_name, order_id = real_order_id, x = x)
+    return render_template("aftercheckout.html", first_name = first_name, order_id = real_order_id)
 
 #BOTTOMNAVIGATION
 def sitemap():

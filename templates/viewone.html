@@ -141,14 +141,16 @@
         <div class="row">
             <div class=".col-md-">
                <img src="static/img/{{ one['imgname']}}" width="500" class="p-5" alt="{{ one['routename'] }}">
+               <p><img src="static/img/{{ one['imgname2']}}" width="500" class="p-5" alt="{{ one['routename'] }}"></p>
             </div>
             <div class="col">
               <div class="jumbotron bg-white">
-                  <h1 class="display-4"></h1>
+                  <h1 class="display-4">{{ one['name']}}</h1>
                   <p class="lead">{{ one['description']}}</p>
                   <p>${{ one['price'] }}USD</p>
                   <hr class="my-4">
                   <div class="row">
+                    
                     <form class="form-inline my-2 my-lg-0" action="/addtocart/{{ one['routename'] }}" method="POST">
                         <input type="hidden" name="product_id" value="{{ one['id'] }}">
                         <input type="hidden" name="product_price" value="{{ one['price'] }}">

@@ -1,5 +1,5 @@
 from config import app
-from controller_functions import onLoad, updaterecently, checkdups, homepage, register, login, logout, myaccount, accountinfo, editaddresspage, editaddress, deleteaddress, add_address, add_billingid_from_checkout, add_billing_address, edit_billing_address, wishlistpage, addtowishlist, deletefromwishlist, addtocart, deletefromcart, viewcart, checkoutpage, verify_shipping_address, verify_billing_address, submitordertodb, aftercheckout, sitemap, momomust, privacy, shippinginformation, returnsandexchanges, productcare, contactus, about, viewallproducts, viewallhandbags, viewallbagcharms, viewallwallets, viewallblackcollection, viewallrexy, rogue, highline, harmony, rexyskeleton, rexyoilslick, rexygold, foldovercardcase, rexycardholder, rexyzippywallet, editaccountinfopage, editaccount, email, searchpage, productsearch, add_address_from_checkout
+from controller_functions import onLoad, updaterecently, checkdups, homepage, register, login, logout, myaccount, accountinfo, editaddresspage, editaddress, deleteaddress, add_address, add_billingid_from_checkout, wishlistpage, addtowishlist, deletefromwishlist, addtocart, deletefromcart, viewcart, checkoutpage, verify_shipping_address, verify_billing_address, submitordertodb, aftercheckout, sitemap, momomust, privacy, shippinginformation, returnsandexchanges, productcare, contactus, about, viewallproducts, viewallhandbags, viewallbagcharms, viewallwallets, viewallblackcollection, viewallrexy, rogue, highline, harmony, rexyskeleton, rexyoilslick, rexygold, foldovercardcase, rexycardholder, rexyzippywallet, editaccountinfopage, editaccount, email, searchpage, productsearch, add_address_from_checkout
 
 app.add_url_rule("/", view_func=homepage)
 #LOGIN/REG - done
@@ -8,21 +8,17 @@ app.add_url_rule("/login", view_func=login, methods=["POST"])
 app.add_url_rule("/logout", view_func=logout, methods=["POST"])
 app.add_url_rule("/myaccount", view_func=myaccount, methods=["GET", "POST"])
 app.add_url_rule("/accountinfo", view_func=accountinfo)
-app.add_url_rule("/editcustomerinformation/<login_id>", view_func=editaccountinfopage, methods=["POST"])
-app.add_url_rule("/editaccount", view_func=editaccount, methods=["POST"])
+app.add_url_rule("/editcustomerinformation/<login_id>", view_func=editaccountinfopage, methods=["GET","POST"])
+app.add_url_rule("/editaccount/<login_id>", view_func=editaccount, methods=["POST"])
 app.add_url_rule("/", view_func=email, methods=["GET"])
 
-#SHIPPINGADDRESS - done
+#SHIPPING/BILLINGADDRESS - done
 app.add_url_rule("/editshippingaddress/<address_id>", view_func=editaddresspage, methods=["POST"])
 app.add_url_rule("/editshippingfinal", view_func=editaddress, methods=["POST"])
 app.add_url_rule("/deleteshippingaddress", view_func=deleteaddress, methods=["POST"])
 app.add_url_rule("/addshippingaddress", view_func=add_address, methods=["POST"])
 app.add_url_rule("/add_address_from_checkout", view_func=add_address_from_checkout, methods=["POST"])
 app.add_url_rule("/add_billingid_from_checkout", view_func=add_billingid_from_checkout, methods=["POST"])
-
-#BILLINGADDRESS
-app.add_url_rule("/add_billing_address", view_func=add_billing_address, methods=["POST"])
-app.add_url_rule("/edit_billing_address", view_func=edit_billing_address, methods=["POST"])
 
 #WISHLIST - done
 app.add_url_rule("/wishlist", view_func=wishlistpage, methods=["GET","POST"])

@@ -63,10 +63,10 @@ class customer(db.Model):
     
     @classmethod
     def edit_customer(cls, edit_customer_data):
-        edit_customer = customer.query.get(edit_customer_data['login_id'])
+        edit_customer = customer.query.get(edit_customer_data["login_id"])
         edit_customer.first_name = edit_customer_data["first_name"]
         edit_customer.last_name = edit_customer_data["last_name"]
-        edit_customer.phone_number = edit_customer_data['phone_number']
+        edit_customer.phone_number = edit_customer_data["phone_number"]
         db.session.commit()
         flash("Customer Information Updated")
         return edit_customer
@@ -162,7 +162,7 @@ class billing_address(db.Model):
     @classmethod
     def add_billing_shipping(cls, new_billing_data):
         add_billing = cls(
-            customer_id = new_shipping_data['customer_id'],
+            customer_id = new_billing_data['customer_id'],
             street = new_billing_data['street'],
             city = new_billing_data['city'],
             state = new_billing_data['state'],
@@ -180,23 +180,13 @@ class billing_address(db.Model):
         flash("You Deleted This Billing Address.")
         return delete_billing_address
 
-    @classmethod
-    def edit_billing_address(cls, edit_billing_data):
-        edit_billing = billing_address.query.get(edit_billing_data['customer_id'])
-        edit_billing.street = edit_billing_data["edit_street"]
-        edit_billing.city = edit_billing_data["edit_city"]
-        edit_billing.state = edit_billing_data['edit_state']
-        edit_billing.zipcode = edit_billing_data['edit_zipcode']
-        db.session.commit()
-        flash("Billing Address Edited")
-        return edit_billing
-
 # Many to Many table
 class order(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
     s_address_id = db.Column(db.Integer, db.ForeignKey('shipping_address.id'))
     b_address_id = db.Column(db.Integer, db.ForeignKey('billing_address.id'))
+    order_total = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
     customer = db.relationship('customer', backref='orders', cascade='all')
@@ -217,6 +207,7 @@ class product(db.Model):
     description = db.Column(db.String(255))
     price = db.Column(db.String(255))
     imgname = db.Column(db.String(255))
+    imgname2 = db.Column(db.String(255))
     routename = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())

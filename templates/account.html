@@ -145,18 +145,22 @@
                   <table class="table">
                       <thead class="thead-dark">
                         <tr>
-                          <th scope="col">Product I.D#</th>
+                          <th scope="col">ORDER I.D#</th>
                           <th scope="col">Product Name</th>
                           <th scope="col">Product Image</th>
+                          <th scope="col">Product Price</th>
                           <th scope="col">Ordered On</th>
+                          <th scope="col">Order Total</th>
                         </tr>
                       </thead>
                       {% for oneorder in allorders %}
                       <tr>
-                          <th scope="row">{{ oneorder[0].id }}</th>
+                          <th scope="row">{{ oneorder[2].id }}</th>
                           <td>{{ oneorder[0].name }}</td>
                           <td><a href="/{{oneorder[0].routename}}"><img src="static/img/{{ oneorder[0].imgname }}" height="100" width="100" alt="{{ oneorder[0].routename }}"></a></td>
+                          <td>${{ oneorder[0].price }} USD</td>
                           <td>{{ oneorder[2].created_at }}</td>
+                          <td>${{ oneorder[2].order_total }} USD</td>
                         </tr>
                       {% endfor %}
                       </tbody>
@@ -168,8 +172,16 @@
             </div>
             <div class="col">
                 <h4>Account Details</h4>
+                
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="mt-5">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
                 {% for customer in customerinfo %}
-                <p>Full Name: {{ customer['first_name'] }} {{ customer['last_name'] }}</p>
+                <p>Full Name: {{ customer['first_name'] | upper }} {{ customer['last_name'] | upper }}</p>
                 <p>Email: {{ customer['email'] }}</p>
                 <p>Phone Number: {{ customer['phone_number'] }}</p>
                 <div class="row">
@@ -183,8 +195,8 @@
                 <p>Shipping Address(es):</p>
                 {% if alladdresses %}
                   {% for oneaddress in alladdresses %}
-                    <p>{{ oneaddress['street']}}</p>
-                    <p>{{ oneaddress['city']}} {{ oneaddress['state']}} {{ oneaddress['zipcode']}}</p>
+                    <p>{{ oneaddress['street'] | upper }}</p>
+                    <p>{{ oneaddress['city'] | upper }} {{ oneaddress['state'] | upper}} {{ oneaddress['zipcode'] | upper }}</p>
                     <div class="row">
                         <form class="form-inline my-2 my-lg-0" action="/editshippingaddress/{{ oneaddress['id']}}" method="POST">
                             <input type="hidden" name="edit_shipping" value="{{ oneaddress['id']}}">
@@ -201,14 +213,6 @@
                     </div>
                   {% endfor %}
                 {% endif %}
-
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for message in messages %}
-                        <p class="mt-5">{{ message }}</p>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
                 <hr>
                 <p>Add an Address</p>
                 <form action="/addshippingaddress" method="POST">

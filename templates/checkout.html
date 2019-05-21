@@ -53,13 +53,10 @@
                     {% for address in shipping_addresses %}
                 <input type="hidden" name="customer_id" value="{{ address['customer_id']}}">
                 <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    
-                    <div class="input-group-text">
-                    <input type="checkbox" aria-label="Checkbox for following text input">
-                    </div>
+                <div class="input-group-text">
+                    Address #{{ address['id']}}
                 </div>
-                <input type="text" class="form-control bg-white" aria-label="Text input with checkbox" value="{{ address['street'] }} {{ address['city'] }} {{ address['state'] }} {{ address['zipcode'] }}" readonly>
+                <input type="text" class="form-control bg-white" aria-label="Text input with checkbox" value="{{ address['street'] | upper }} {{ address['city'] | upper }} {{ address['state'] | upper }} {{ address['zipcode'] | upper }}" readonly>
                 <input type="hidden" name="verify_shipping_address_id" value="{{ address['id'] }}">
                 <button class="btn btn-light ml-3">Use This Address For Order</button>
                 </form>
@@ -154,23 +151,17 @@
             
                 <h4 class="mb-3 mt-3">Billing Address</h4>
                 <p>Choose from a saved address below.</p>
+                {% for address in billing_addresses %}
                 <form action="/verifybillingaddress" method="POST">
-                    {% for address in billing_addresses %}
                 <input type="hidden" name="customer_id" value="{{ address['customer_id']}}">
                 <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    
-                    <div class="input-group-text">
-                    <input type="checkbox" aria-label="Checkbox for following text input">
-                    </div>
-                </div>
-                <input type="text" class="form-control bg-white" aria-label="Text input with checkbox" value="{{ address['street'] }} {{ address['city'] }} {{ address['state'] }} {{ address['zipcode'] }}" readonly>
+                <input type="text" class="form-control bg-white" aria-label="Text input with checkbox" value="{{ address['street']  | upper }} {{ address['city'] | upper }} {{ address['state'] | upper }} {{ address['zipcode'] | upper }}" readonly>
                 <input type="hidden" name="verify_billing_address_id" value="{{ address['id'] }}">
                 <button class="btn btn-light ml-3">Use This Address For Order</button>
                 </form>
             </div>
+                {% endfor %}
             
-            {% endfor %}
             <div class="mb-3">
                 <p>Or Add A New Billing Address</p>
 
