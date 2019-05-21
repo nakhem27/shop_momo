@@ -9,291 +9,278 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/search.js') }}"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
-
-    <div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <h1 class="display-4">Shop Momo</h1>
-            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <h1 class="display-4">Shop Momo</h1>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <form action="/" method="GET">
+              <button class="btn btn-light">Home</button>
+            </form>
+          </li>
+          <li class="nav-item active">
+            <form action="/viewallproducts" method="GET">
+              <button class="btn btn-light">Shop</button>
+            </form>
+          </li>
+          <li class="nav-item dropdown">
+            <button class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Handbags
             </button>
-    
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-    
-                      <form action="/" method="GET">
-                        <button class="btn btn-light">Home</button>
-                      </form>
-    
-                    </li>
-                    <li class="nav-item active">
-    
-                      <form action="/viewallproducts" method="GET">
-                        <button class="btn btn-light">Shop</button>
-                      </form>
-                      
-                    </li>
-                    <li class="nav-item dropdown">
-                        <button class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Handbags
-                        </button>
-    
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <form action="/rogue" method="GET">
-                            <button class="btn btn-light dropdown-item">Rogue 25</button>
-                          </form>
-                          <form action="/highline" method="GET">
-                              <button class="btn btn-light dropdown-item">Rexy Highline Tote</button>
-                          </form>
-                          <form action="/harmony" method="GET">
-                            <button class="btn btn-light dropdown-item">Harmony Hobo</button>
-                          </form>
-                          <div class="dropdown-divider"></div>
-                          <form action="/viewallhandbags" method="GET">
-                            <button class="btn btn-light dropdown-item">All Handbags</button>
-                          </form>
-                        </div>
-                        
-                    </li>
-                    <li class="nav-item dropdown">
-                      <button class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Bag Charms
-                      </button>
-    
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <form action="/rexyskeleton" method="GET">
-                          <button class="btn btn-light dropdown-item">Rexy Skeleton</button>
-                        </form>
-                        <form action="/rexyoilslick" method="GET">
-                          <button class="btn btn-light dropdown-item">Rexy Oil Slick</button>
-                        </form>
-                        <form action="/rexygold" method="GET">
-                          <button class="btn btn-light dropdown-item">Rexy Gold</button>
-                        </form>
-                        <div class="dropdown-divider"></div>
-                        <form action="/viewallbagcharms" method="GET">
-                          <button class="btn btn-light dropdown-item">All Bag Charms</button>
-                        </form>
-                      </div>
-                    </li>
-    
-                    <li class="nav-item dropdown">
-                      <button class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Wallets
-                      </button>
-    
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <form action="/foldovercardcase" method="GET">
-                          <button class="btn btn-light dropdown-item">Foldover Card Case</button>
-                        </form>
-                        <form action="/rexycardholder" method="GET">
-                          <button class="btn btn-light dropdown-item">Rexy Cardholder</button>
-                        </form>
-                        <form action="/rexyzippywallet" method="GET">
-                          <button class="btn btn-light dropdown-item">Rexy Zippy Wallet</button>
-                        </form>
-                        <div class="dropdown-divider"></div>
-                        <form action="/viewallwallets" method="GET">
-                          <button class="btn btn-light dropdown-item">All Wallets</button>
-                        </form>
-                      </div>
-                    </li>
-    
-                </ul>
-            </div>
-    
-            {#<form class="form-inline my-2 my-lg-0" action="/" method="GET">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-light" type="submit"><img src="{{ url_for('static', filename='img/searchicon.png') }}" width="20" height="20" alt="search"></button>
-            </form>#}
-    
-            <form class="form-inline my-2 my-lg-0" action="/myaccount" method="POST">
-              <button class="btn btn-light"><img src="{{ url_for('static', filename='img/myaccount.jpg') }}" width="25" height="25" alt="myaccount"></button>
-            </form>
-    
-            <form class="form-inline my-2 my-lg-0" action="/wishlist" method="POST">
-              <button class="btn btn-light"><img src="{{ url_for('static', filename='img/heart.png') }}" width="20" height="20" alt="wishlist"></button>
-            </form>
-    
-            <form class="form-inline my-2 my-lg-0" action="/viewcart" method="POST">
-              <button class="btn btn-light"><img src="{{ url_for('static', filename='img/cart.png') }}" width="28" height="28" alt="cart">{{ cart | length }}</button>
-            </form>
-    
-            </nav>
-          </div>
-
-
-      <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <nav class="navbar navbar-expand-sm navbar-light bg-white">
-                    <h4 class="display-4">My Account</h1>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
-                        <form class="form-inline my-2 my-lg-0 text-right" action="/logout" method="POST">
-                            <button class="btn btn-secondary">Logout</button>
-                        </form>
-                </nav>
-                <hr class="my-4">
-            </div>
-        </div>
-        <div class="row mx-4 my-4">
-            <div class="col">
-                <h4>Change Your Address</h4>
-                <form action="/editshippingfinal" method="POST">
-                  <input type="hidden" name="address_id" value="{{ address_id }}">
-                <p>Street: <input type="text" name="street" required="" value="{{ street }}" placeholder="{{ street }}">
-                  <div class="invalid-feedback">
-                    Please provide a street address.
-                  </div>
-                </p>
-                <p>City: <input type="text" name="city" required="" value="{{ city }}" placeholder="{{ city }}">
-                  <div class="invalid-feedback">
-                    Please provide a street address.
-                  </div>
-                </p>
-                <p>State: <select id="state" required="" value="{{ state }}" name="state">
-                    <option value="">Choose...</option>
-                    <option value="AL">Alabama</option>
-                    <option value="AK">Alaska</option>
-                    <option value="AZ">Arizona</option>
-                    <option value="AR">Arkansas</option>
-                    <option value="CA">California</option>
-                    <option value="CO">Colorado</option>
-                    <option value="CT">Connecticut</option>
-                    <option value="DE">Delaware</option>
-                    <option value="DC">District Of Columbia</option>
-                    <option value="FL">Florida</option>
-                    <option value="GA">Georgia</option>
-                    <option value="HI">Hawaii</option>
-                    <option value="ID">Idaho</option>
-                    <option value="IL">Illinois</option>
-                    <option value="IN">Indiana</option>
-                    <option value="IA">Iowa</option>
-                    <option value="KS">Kansas</option>
-                    <option value="KY">Kentucky</option>
-                    <option value="LA">Louisiana</option>
-                    <option value="ME">Maine</option>
-                    <option value="MD">Maryland</option>
-                    <option value="MA">Massachusetts</option>
-                    <option value="MI">Michigan</option>
-                    <option value="MN">Minnesota</option>
-                    <option value="MS">Mississippi</option>
-                    <option value="MO">Missouri</option>
-                    <option value="MT">Montana</option>
-                    <option value="NE">Nebraska</option>
-                    <option value="NV">Nevada</option>
-                    <option value="NH">New Hampshire</option>
-                    <option value="NJ">New Jersey</option>
-                    <option value="NM">New Mexico</option>
-                    <option value="NY">New York</option>
-                    <option value="NC">North Carolina</option>
-                    <option value="ND">North Dakota</option>
-                    <option value="OH">Ohio</option>
-                    <option value="OK">Oklahoma</option>
-                    <option value="OR">Oregon</option>
-                    <option value="PA">Pennsylvania</option>
-                    <option value="RI">Rhode Island</option>
-                    <option value="SC">South Carolina</option>
-                    <option value="SD">South Dakota</option>
-                    <option value="TN">Tennessee</option>
-                    <option value="TX">Texas</option>
-                    <option value="UT">Utah</option>
-                    <option value="VT">Vermont</option>
-                    <option value="VA">Virginia</option>
-                    <option value="WA">Washington</option>
-                    <option value="WV">West Virginia</option>
-                    <option value="WI">Wisconsin</option>
-                    <option value="WY">Wyoming</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Please provide a valid state.
-                    </div></p>
-                <p>Zip Code: <input type="text" required="" name="zipcode" value="{{zipcode}}" placeholder="{{zipcode}}">
-                  <div class="invalid-feedback">
-                    Please provide a street address.
-                  </div></p>
-                <button class="btn btn-secondary" type="submit">Submit</button>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <form action="/rogue" method="GET">
+                <button class="btn btn-light dropdown-item">Rogue 25</button>
               </form>
-                <p><a href="/accountinfo" class="text-secondary">Back to Account Information</a></p>
+              <form action="/highline" method="GET">
+                  <button class="btn btn-light dropdown-item">Rexy Highline Tote</button>
+              </form>
+              <form action="/harmony" method="GET">
+                <button class="btn btn-light dropdown-item">Harmony Hobo</button>
+              </form>
+              <div class="dropdown-divider"></div>
+              <form action="/viewallhandbags" method="GET">
+                <button class="btn btn-light dropdown-item">All Handbags</button>
+              </form>
             </div>
+          </li>
+          <li class="nav-item dropdown">
+            <button class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Bag Charms
+            </button>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <form action="/rexyskeleton" method="GET">
+                <button class="btn btn-light dropdown-item">Rexy Skeleton</button>
+              </form>
+              <form action="/rexyoilslick" method="GET">
+                <button class="btn btn-light dropdown-item">Rexy Oil Slick</button>
+              </form>
+              <form action="/rexygold" method="GET">
+                <button class="btn btn-light dropdown-item">Rexy Gold</button>
+              </form>
+              <div class="dropdown-divider"></div>
+              <form action="/viewallbagcharms" method="GET">
+                <button class="btn btn-light dropdown-item">All Bag Charms</button>
+              </form>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <button class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Wallets
+            </button>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <form action="/foldovercardcase" method="GET">
+                <button class="btn btn-light dropdown-item">Foldover Card Case</button>
+              </form>
+              <form action="/rexycardholder" method="GET">
+                <button class="btn btn-light dropdown-item">Rexy Cardholder</button>
+              </form>
+              <form action="/rexyzippywallet" method="GET">
+                <button class="btn btn-light dropdown-item">Rexy Zippy Wallet</button>
+              </form>
+              <div class="dropdown-divider"></div>
+              <form action="/viewallwallets" method="GET">
+                <button class="btn btn-light dropdown-item">All Wallets</button>
+              </form>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <form class="form-inline my-2 my-lg-0" action="/productsearch" method="POST">
+        <div class="ui-widget">
+            <input class="form-control mr-sm-2" id="form-autocomplete" type="search" placeholder="Search" aria-label="Search" name="user_searched_for">
+            <button class="btn btn-light" type="submit"><img src="{{ url_for('static', filename='img/searchicon.png') }}" width="20" height="20" alt="search"></button>
         </div>
-      
-        {% if listofviewed %}
-        <div class="row bg-light">
-          <p>Recently Viewed</p>
-            <hr class="my-4">
-        </div>
-        <div class="row border-bottom bg-light">
-              <div class="row bg-whitesmoke pl-5 pb-5">
-                  {%for onelist in listofviewed %}
-                  {% for product in allproducts %}
-                  {% if product['id'] == onelist %}
-                  <div class="col">
-                    <div class="photo" width="300">
-                      <form action="/{{ product['routename'] }}" method="GET">
-                        <input type="image" img src="static/img/{{ product['imgname'] }}" width="200" alt="{{ product['imgname'] }}">
-                        <p class="caption">{{product['name']}} - ${{ product['price']}}</p>
-                      </form>
-                    </div>
-              </div>
-              {% endif %}
-              {% endfor %}
-              {% endfor %}
+      </form>
+      <form class="form-inline my-2 my-lg-0" action="/myaccount" method="POST">
+        <button class="btn btn-light"><img src="{{ url_for('static', filename='img/myaccount.jpg') }}" width="25" height="25" alt="myaccount"></button>
+      </form>
+      <form class="form-inline my-2 my-lg-0" action="/wishlist" method="POST">
+        <button class="btn btn-light"><img src="{{ url_for('static', filename='img/heart.png') }}" width="20" height="20" alt="wishlist"></button>
+      </form>
+      <form class="form-inline my-2 my-lg-0" action="/viewcart" method="POST">
+        <button class="btn btn-light"><img src="{{ url_for('static', filename='img/cart.png') }}" width="28" height="28" alt="cart">{{ cart | length }}</button>
+      </form>
+    </nav>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white">
+          <h4 class="display-4">My Account</h1>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+            <form class="form-inline my-2 my-lg-0 text-right" action="/logout" method="POST">
+                <button class="btn btn-secondary">Logout</button>
+            </form>
+        </nav>
+        <hr class="my-4">
+      </div>
+    </div>
+    <div class="row mx-4 my-4">
+      <div class="col">
+        <h4>Change Your Address</h4>
+        <form action="/editshippingfinal" method="POST">
+          <input type="hidden" name="address_id" value="{{ address_id }}">
+          <p>Street: <input type="text" name="street" required="" value="{{ street }}" placeholder="{{ street }}">
+            <div class="invalid-feedback">
+              Please provide a street address.
+            </div>
+          </p>
+          <p>City: <input type="text" name="city" required="" value="{{ city }}" placeholder="{{ city }}">
+            <div class="invalid-feedback">
+              Please provide a street address.
+            </div>
+          </p>
+          <p>
+            State: 
+            <select id="state" required="" value="{{ state }}" name="state">
+              <option value="">Choose...</option>
+              <option value="AL">Alabama</option>
+              <option value="AK">Alaska</option>
+              <option value="AZ">Arizona</option>
+              <option value="AR">Arkansas</option>
+              <option value="CA">California</option>
+              <option value="CO">Colorado</option>
+              <option value="CT">Connecticut</option>
+              <option value="DE">Delaware</option>
+              <option value="DC">District Of Columbia</option>
+              <option value="FL">Florida</option>
+              <option value="GA">Georgia</option>
+              <option value="HI">Hawaii</option>
+              <option value="ID">Idaho</option>
+              <option value="IL">Illinois</option>
+              <option value="IN">Indiana</option>
+              <option value="IA">Iowa</option>
+              <option value="KS">Kansas</option>
+              <option value="KY">Kentucky</option>
+              <option value="LA">Louisiana</option>
+              <option value="ME">Maine</option>
+              <option value="MD">Maryland</option>
+              <option value="MA">Massachusetts</option>
+              <option value="MI">Michigan</option>
+              <option value="MN">Minnesota</option>
+              <option value="MS">Mississippi</option>
+              <option value="MO">Missouri</option>
+              <option value="MT">Montana</option>
+              <option value="NE">Nebraska</option>
+              <option value="NV">Nevada</option>
+              <option value="NH">New Hampshire</option>
+              <option value="NJ">New Jersey</option>
+              <option value="NM">New Mexico</option>
+              <option value="NY">New York</option>
+              <option value="NC">North Carolina</option>
+              <option value="ND">North Dakota</option>
+              <option value="OH">Ohio</option>
+              <option value="OK">Oklahoma</option>
+              <option value="OR">Oregon</option>
+              <option value="PA">Pennsylvania</option>
+              <option value="RI">Rhode Island</option>
+              <option value="SC">South Carolina</option>
+              <option value="SD">South Dakota</option>
+              <option value="TN">Tennessee</option>
+              <option value="TX">Texas</option>
+              <option value="UT">Utah</option>
+              <option value="VT">Vermont</option>
+              <option value="VA">Virginia</option>
+              <option value="WA">Washington</option>
+              <option value="WV">West Virginia</option>
+              <option value="WI">Wisconsin</option>
+              <option value="WY">Wyoming</option>
+            </select>
+            <div class="invalid-feedback">
+                Please provide a valid state.
+            </div>
+          </p>
+          <p>Zip Code: <input type="text" required="" name="zipcode" value="{{zipcode}}" placeholder="{{zipcode}}">
+            <div class="invalid-feedback">
+              Please provide a street address.
+            </div></p>
+          <button class="btn btn-secondary" type="submit">Submit</button>
+        </form>
+        <p><a href="/accountinfo" class="text-secondary">Back to Account Information</a></p>
+      </div>
+    </div>
+
+    {% if listofviewed %}
+    <div class="row bg-light">
+      <p class="ml-5 mt-2">Recently Viewed</p>
+        <hr class="my-4">
+    </div>
+    <div class="row border-bottom bg-light">
+      <div class="row bg-whitesmoke pl-5 pb-5">
+        {%for onelist in listofviewed %}
+        {% for product in allproducts %}
+        {% if product['id'] == onelist %}
+          <div class="col">
+            <div class="photo" width="300">
+              <form action="/{{ product['routename'] }}" method="GET">
+                <input type="image" img src="static/img/{{ product['imgname'] }}" width="200" alt="{{ product['imgname'] }}">
+                <p class="caption">{{product['name']}} - ${{ product['price']}}</p>
+              </form>
+            </div>
           </div>
-        </div>
         {% endif %}
+        {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
 
-      <div class="row border-bottom bg-light">
-        <div class="col">
-          <h6 class="border-bottom pt-5 pb-2">MAIN MENU</h6>
-          <form action="/" method="GET">
-            <button class="btn btn-white">Home</button>
-          </form>
-          <form action="/sitemap" method="GET">
-              <button class="btn btn-white">Site Map</button>
-          </form>
-          <form action="/momomust" method="GET">
-            <button class="btn btn-white">Shop Momo's Musts</button>
-          </form>
+    <div class="row border-bottom bg-light">
+      <div class="col">
+        <h6 class="border-bottom pt-5 pb-2">MAIN MENU</h6>
+        <form action="/" method="GET">
+        <button class="btn btn-white">Home</button>
+        </form>
+        <form action="/sitemap" method="GET">
+          <button class="btn btn-white">Site Map</button>
+        </form>
+        <form action="/momomust" method="GET">
+          <button class="btn btn-white">Shop Momo's Musts</button>
+        </form>
+      </div>
+      <div class="col pb-10">
+        <h6 class="border-bottom pt-5 pb-2">CUSTOMER CARE</h6>
+        <form action="/privacy" method="GET">
+          <button class="btn btn-white">Privacy Policy</button>
+        </form>
+        <form action="/shippinginformation" method="GET">
+          <button class="btn btn-white">Shipping Information</button>
+        </form>
+        <form action="/returnsandexchanges" method="GET">
+            <button class="btn btn-white">Returns & Exchanges</button>
+        </form>
+        <form action="/productcare" method="GET">
+          <button class="btn btn-white">Product Care & Repairs</button>
+        </form>
+        <form action="/contactus" method="GET">
+          <button class="btn btn-white">Contact Us</button>
+        </form>
+      </div>
+      <div class="col">
+        <h6 class="border-bottom pt-5 pb-2">MORE</h6>
+        <form action="/about" method="GET">
+          <button class="btn btn-white">About</button>
+        </form>
+        <form action="/searchpage" method="GET">
+          <button class="btn btn-white">Search</button>
+        </form>
+        <button class="btn btn-white"><a href="https://www.instagram.com/shop_momo_collection" class="text-body"><img src="{{ url_for('static', filename='img/instagram.jpg') }}" height="15">Instagram</a></button>
         </div>
-
-        <div class="col pb-10">
-          <h6 class="border-bottom pt-5 pb-2">CUSTOMER CARE</h6>
-          <form action="/privacy" method="GET">
-              <button class="btn btn-white">Privacy Policy</button>
-          </form>
-          <form action="/shippinginformation" method="GET">
-            <button class="btn btn-white">Shipping Information</button>
-          </form>
-          <form action="/returnsandexchanges" method="GET">
-              <button class="btn btn-white">Returns & Exchanges</button>
-          </form>
-          <form action="/productcare" method="GET">
-            <button class="btn btn-white">Product Care & Repairs</button>
-          </form>
-          <form action="/contactus" method="GET">
-            <button class="btn btn-white">Contact Us</button>
-          </form>
-        </div>
-
-        <div class="col">
-          <h6 class="border-bottom pt-5 pb-2">MORE</h6>
-          <form action="/about" method="GET">
-            <button class="btn btn-white">About</button>
-          </form>
-          <form action="/searchpage" method="GET">
-            <button class="btn btn-white">Search</button>
-          </form>
-            <a href="https://www.instagram.com/shop_momo_collection" class="text-body"><img src="{{ url_for('static', filename='img/instagram.jpg') }}" height="15">Instagram</a>
-          </div>
-      </div>
-
-      <div class="row">
-          <span><small> © 2019 SHOP MOMO </small></span>
-      </div>
-
-      </div>
+    </div>
+    <div class="row">
+        <span><small> © 2019 SHOP MOMO </small></span>
+    </div>
+  </div>
 </body>
 </html>

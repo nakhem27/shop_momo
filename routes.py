@@ -47,7 +47,7 @@ app.add_url_rule("/returnsandexchanges", view_func=returnsandexchanges)
 app.add_url_rule("/productcare", view_func=productcare)
 app.add_url_rule("/contactus", view_func=contactus)
 app.add_url_rule("/searchpage", view_func=searchpage)
-app.add_url_rule("/productsearch", view_func=productsearch)
+app.add_url_rule("/productsearch", view_func=productsearch, methods=["GET","POST"])
 
 #VIEWALL - done
 app.add_url_rule("/viewallproducts", view_func=viewallproducts)

@@ -14,7 +14,7 @@ bcrypt = Bcrypt(app)
 app.secret_key = "ajdflakdjfl"
 
 # change to shop_momo ..... 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ninjas_and_dojos.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shop_momo.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)

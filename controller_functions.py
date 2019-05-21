@@ -440,18 +440,61 @@ def about():
 def searchpage():
     global listofviewed
     global cart
+    global ordertotal
     updaterecently()
     allproducts = product.query.all()
     return render_template("search.html", allproducts = allproducts, cart = cart)
 
-def productsearch():
+def productsearch(): #bandage fix for now
     global cart
-    # res = db.session.query(product, category).filter(product.id == product_category.product_id).filter(product_category.category_id == category.id).all()
-    # list_products = json.dumps(dict(res))
-    res = product.query.all()
-    list_products = [r.as_dict() for r in res]
-    return jsonify(list_products)
-    # return redirect("/searchpage")
+    user_searched_for = request.form["user_searched_for"]
+    search = user_searched_for.lower()
+
+    if str(search) == "handbags" or str(search) == "bags" or str(search) == "purse":
+        return redirect("/viewallhandbags")
+
+    if str(search) == "bag charms" or str(search) == "charms" or str(search) == "keychain":
+        return redirect("/viewallbagcharms")
+    
+    if str(search) == "wallets" or str(search) == "wallet" or str(search) == "cardcase":
+        return redirect("/viewallwallets")
+    
+    if str(search) == "rexy":
+        return redirect("/viewallrexy")
+
+    if str(search) == "black":
+        return redirect("/viewallblackcollection")
+    
+    if str(search) == "rogue" or str(search) == "rogue 25":
+        return redirect("/rogue")
+    
+    if str(search) == "rexy highline tote" or str(search) == "highline" or str(search) == "tote":
+        return redirect("/highline")
+    
+    if str(search) == "harmony" or str(search) == "harmony hobo" or str(search) == "hobo":
+        return redirect("/harmony")
+    
+    if str(search) == "rexy skeleton" or str(search) == "skeleton":
+        return redirect("/rexyskeleton")
+    
+    if str(search) == "rexy oil slick" or str(search) == "oilslick":
+        return redirect("/rexyoilslick")
+    
+    if str(search) == "rexy gold" or str(search) == "gold":
+        return redirect("/rexygold")
+    
+    if str(search) == "foldover card case" or str(search) == "foldover":
+        return redirect("/foldovercardcase")
+    
+    if str(search) == "rexy card holder" or str(search) == "cardholder":
+        return redirect("/rexycardholder")
+    
+    if str(search) == "rexy zippy wallet" or str(search) == "zippy" or str(search) == "zippy wallet":
+        return redirect("/rexyzippywallet")
+
+    else:
+        flash("Search yielded no results. Please try again or choose from the dropdown menus or sitemap.")
+        return redirect("/searchpage")
 
 #VIEWALL
 def viewallproducts():

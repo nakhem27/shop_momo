@@ -11,6 +11,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="form-validation.css" rel="stylesheet">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/search.js') }}"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <style>
             .bd-placeholder-img {
               font-size: 1.125rem;
@@ -26,18 +30,6 @@
                 font-size: 3.5rem;
               }
             }
-          </style>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='purselogo.png') }}">
-    <style>
-      .photo {
-        position: relative;
-      }
-
-      .caption {
-        position: absolute;
-        bottom: -10px;
-        left: 10px;
-      }
     </style>
 </head>
 <body>
@@ -155,6 +147,9 @@
                 <form action="/verifybillingaddress" method="POST">
                 <input type="hidden" name="customer_id" value="{{ address['customer_id']}}">
                 <div class="input-group mb-3">
+                <div class="input-group-text">
+                    Address #{{ address['id']}}
+                </div>
                 <input type="text" class="form-control bg-white" aria-label="Text input with checkbox" value="{{ address['street']  | upper }} {{ address['city'] | upper }} {{ address['state'] | upper }} {{ address['zipcode'] | upper }}" readonly>
                 <input type="hidden" name="verify_billing_address_id" value="{{ address['id'] }}">
                 <button class="btn btn-light ml-3">Use This Address For Order</button>
@@ -384,7 +379,7 @@
             <form action="/searchpage" method="GET">
               <button class="btn btn-white">Search</button>
             </form>
-              <a href="https://www.instagram.com/shop_momo_collection" class="text-body"><img src="{{ url_for('static', filename='img/instagram.jpg') }}" height="15">Instagram</a>
+              <button class="btn btn-white"><a href="https://www.instagram.com/shop_momo_collection" class="text-body"><img src="{{ url_for('static', filename='img/instagram.jpg') }}" height="15">Instagram</a></button>
             </div>
   
         </div>

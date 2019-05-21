@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Shop Momo - Welcome</title>
+    <title>Shop Momo - Login or Register</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/search.js') }}"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <style>
         .container-fluid {
             background-image: url("static/img/rexybackground.png");
@@ -17,299 +21,261 @@
         .photo {
             position: relative;
         }
-
         .caption {
             position: absolute;
             bottom: -10px;
             left: 10px;
         }
-
         .register {
             background: rgba(255, 255, 255, .9)
         }
     </style>
 </head>
 <body>
-
     <div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <h1 class="display-4">Shop Momo</h1>
-            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-    
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-    
-                      <form action="/" method="GET">
-                        <button class="btn btn-light">Home</button>
-                      </form>
-    
-                    </li>
-                    <li class="nav-item active">
-    
-                      <form action="/viewallproducts" method="GET">
-                        <button class="btn btn-light">Shop</button>
-                      </form>
-                      
-                    </li>
-                    <li class="nav-item dropdown">
-                        <button class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Handbags
-                        </button>
-    
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <form action="/rogue" method="GET">
-                            <button class="btn btn-light dropdown-item">Rogue 25</button>
-                          </form>
-                          <form action="/highline" method="GET">
-                              <button class="btn btn-light dropdown-item">Rexy Highline Tote</button>
-                          </form>
-                          <form action="/harmony" method="GET">
-                            <button class="btn btn-light dropdown-item">Harmony Hobo</button>
-                          </form>
-                          <div class="dropdown-divider"></div>
-                          <form action="/viewallhandbags" method="GET">
-                            <button class="btn btn-light dropdown-item">All Handbags</button>
-                          </form>
-                        </div>
-                        
-                    </li>
-                    <li class="nav-item dropdown">
-                      <button class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Bag Charms
-                      </button>
-    
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <form action="/rexyskeleton" method="GET">
-                          <button class="btn btn-light dropdown-item">Rexy Skeleton</button>
-                        </form>
-                        <form action="/rexyoilslick" method="GET">
-                          <button class="btn btn-light dropdown-item">Rexy Oil Slick</button>
-                        </form>
-                        <form action="/rexygold" method="GET">
-                          <button class="btn btn-light dropdown-item">Rexy Gold</button>
-                        </form>
-                        <div class="dropdown-divider"></div>
-                        <form action="/viewallbagcharms" method="GET">
-                          <button class="btn btn-light dropdown-item">All Bag Charms</button>
-                        </form>
-                      </div>
-                    </li>
-    
-                    <li class="nav-item dropdown">
-                      <button class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Wallets
-                      </button>
-    
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <form action="/foldovercardcase" method="GET">
-                          <button class="btn btn-light dropdown-item">Foldover Card Case</button>
-                        </form>
-                        <form action="/rexycardholder" method="GET">
-                          <button class="btn btn-light dropdown-item">Rexy Cardholder</button>
-                        </form>
-                        <form action="/rexyzippywallet" method="GET">
-                          <button class="btn btn-light dropdown-item">Rexy Zippy Wallet</button>
-                        </form>
-                        <div class="dropdown-divider"></div>
-                        <form action="/viewallwallets" method="GET">
-                          <button class="btn btn-light dropdown-item">All Wallets</button>
-                        </form>
-                      </div>
-                    </li>
-    
-                </ul>
-            </div>
-    
-            {# <form class="form-inline my-2 my-lg-0" action="/searchpage" method="GET">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-light" type="submit"><img src="{{ url_for('static', filename='img/searchicon.png') }}" width="20" height="20" alt="search"></button>
-            </form> #}
-    
-            <form class="form-inline my-2 my-lg-0" action="/myaccount" method="POST">
-              <button class="btn btn-light"><img src="{{ url_for('static', filename='img/myaccount.jpg') }}" width="25" height="25" alt="myaccount"></button>
-            </form>
-    
-            <form class="form-inline my-2 my-lg-0" action="/wishlist" method="POST">
-              <button class="btn btn-light"><img src="{{ url_for('static', filename='img/heart.png') }}" width="20" height="20" alt="wishlist"></button>
-            </form>
-    
-            <form class="form-inline my-2 my-lg-0" action="/viewcart" method="POST">
-              <button class="btn btn-light"><img src="{{ url_for('static', filename='img/cart.png') }}" width="28" height="28" alt="cart">{{ cart | length }}</button>
-            </form>
-    
-            </nav>
-          </div>
-
-        <div class="container-fluid clearfix">
-            <div class="row p-5">
-
-                <div class="col p-1">
-                    <div class="col px-md-5">
-                        <div class="p-3 register">
-                        <h5 class="pb-2">Register</h5>
-                        <form action="/register" method="POST">
-    
-                            <div class="form-row">
-                                <label for="inputsm" class="col-sm-2 col-form-label">First Name:</label>
-                                <div class="col-xs-2">
-                                <input type="text" class="form-control form-control-sm" name="first_name" placeholder="First name" required="">
-                                <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
-    
-                            <div class="form-row">
-                                <label for="inputsm" class="col-sm-2 col-form-label">Last Name:</label>
-                                <div class="col-xs-2">
-                                <input type="text" class="form-control form-control-sm" name="last_name" placeholder="Last name" required="">
-                                <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
-    
-                            <div class="form-row">
-                                <div id="emailMsg"></div> 
-                                <label for="inputsm" class="col-sm-2 col-form-label">Email:</label>
-                                <div class="col-xs-2">
-                                <input type="text" class="form-control form-control-sm" name="email" placeholder="Email" required="">
-                                <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Phone Number:</label>
-                                <div class="col-xs-2">
-                                <input type="text" class="form-control form-control-sm" name="phone_number" placeholder="Phone number" required="">
-                                <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
-    
-                            <div class="form-row">
-                                <label for="inputsm" class="col-sm-2 col-form-label">Password:</label>
-                                <div class="col-xs-2">
-                                <input type="text" class="form-control form-control-sm" name="password" placeholder="Password" required="">
-                                <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
-    
-                            <div class="form-row">
-                                <label for="inputsm" class="col-sm-2 col-form-label">Confirm Password:</label>
-                                <div class="col-xs-2">
-                                <input type="text" class="form-control form-control-sm" name="confirm_password" placeholder="Confirm Password" required="">
-                                <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
-        
-                            <div class="form-row">
-                                <div class="col-xs-2">
-                                <button type="submit" class="btn btn-dark">Register</button>
-                                </div>
-                            </div>
-                            
-                            </form>
-                            {% with messages = get_flashed_messages() %}
-                            {% if messages %}
-                                {% for message in messages %}
-                                    <p>{{ message }}</p>
-                                {% endfor %}
-                            {% endif %}
-                            {% endwith %}
-                        </div>
-                    </div>
-                    
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <h1 class="display-4">Shop Momo</h1>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <form action="/" method="GET">
+                  <button class="btn btn-light">Home</button>
+                </form>
+              </li>
+              <li class="nav-item active">
+                <form action="/viewallproducts" method="GET">
+                  <button class="btn btn-light">Shop</button>
+                </form>
+              </li>
+              <li class="nav-item dropdown">
+                <button class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Handbags
+                </button>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <form action="/rogue" method="GET">
+                    <button class="btn btn-light dropdown-item">Rogue 25</button>
+                  </form>
+                  <form action="/highline" method="GET">
+                      <button class="btn btn-light dropdown-item">Rexy Highline Tote</button>
+                  </form>
+                  <form action="/harmony" method="GET">
+                    <button class="btn btn-light dropdown-item">Harmony Hobo</button>
+                  </form>
+                  <div class="dropdown-divider"></div>
+                  <form action="/viewallhandbags" method="GET">
+                    <button class="btn btn-light dropdown-item">All Handbags</button>
+                  </form>
                 </div>
-                    
-
-                <div class="col p-1">
-                    <div class="col px-md-5">
-                        <div class="p-3 register">
-                        <h5 class="pb-2">Log In</h5>
-
-                        <form action="/login" method="POST">
-                            <div class="form-row">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Email:</label>
-                                <div class="col-xs-2">
-                                <input type="text" class="form-control form-control-sm" name="email" required="">
-                                <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
-                                <div class="col-xs-2">
-                                <input type="text" class="form-control form-control-sm" name="password" required="">
-                                <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-xs-2">
-                                <button type="submit" class="btn btn-dark">Login</button>
-                                </div>
-                            </div>
-                        </form>
-
-                        {% with messages = get_flashed_messages() %}
-                        {% if messages %}
-                            {% for message in messages %}
-                                <p>{{ message }}</p>
-                            {% endfor %}
-                        {% endif %}
-                        {% endwith %}
-                        </div>
-                    </div>
+              </li>
+              <li class="nav-item dropdown">
+                <button class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Bag Charms
+                </button>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <form action="/rexyskeleton" method="GET">
+                    <button class="btn btn-light dropdown-item">Rexy Skeleton</button>
+                  </form>
+                  <form action="/rexyoilslick" method="GET">
+                    <button class="btn btn-light dropdown-item">Rexy Oil Slick</button>
+                  </form>
+                  <form action="/rexygold" method="GET">
+                    <button class="btn btn-light dropdown-item">Rexy Gold</button>
+                  </form>
+                  <div class="dropdown-divider"></div>
+                  <form action="/viewallbagcharms" method="GET">
+                    <button class="btn btn-light dropdown-item">All Bag Charms</button>
+                  </form>
                 </div>
-            </div>
-    
-          <div class="row border-bottom bg-light">
-            <div class="col">
-              <h6 class="border-bottom pt-5 pb-2">MAIN MENU</h6>
-              <form action="/" method="GET">
-                <button class="btn btn-white">Home</button>
-              </form>
-              <form action="/sitemap" method="GET">
-                  <button class="btn btn-white">Site Map</button>
-              </form>
-              <form action="/momomust" method="GET">
-                <button class="btn btn-white">Shop Momo's Musts</button>
-              </form>
-            </div>
-    
-            <div class="col pb-10">
-              <h6 class="border-bottom pt-5 pb-2">CUSTOMER CARE</h6>
-              <form action="/privacy" method="GET">
-                  <button class="btn btn-white">Privacy Policy</button>
-              </form>
-              <form action="/shippinginformation" method="GET">
-                <button class="btn btn-white">Shipping Information</button>
-              </form>
-              <form action="/returnsandexchanges" method="GET">
-                  <button class="btn btn-white">Returns & Exchanges</button>
-              </form>
-              <form action="/productcare" method="GET">
-                <button class="btn btn-white">Product Care & Repairs</button>
-              </form>
-              <form action="/contactus" method="GET">
-                <button class="btn btn-white">Contact Us</button>
-              </form>
-            </div>
-    
-            <div class="col">
-              <h6 class="border-bottom pt-5 pb-2">MORE</h6>
-              <form action="/about" method="GET">
-                <button class="btn btn-white">About</button>
-              </form>
-              <form action="/searchpage" method="GET">
-                <button class="btn btn-white">Search</button>
-              </form>
-                <a href="https://www.instagram.com/shop_momo_collection" class="text-body"><img src="{{ url_for('static', filename='img/instagram.jpg') }}" height="15">Instagram</a>
-              </div>
-    
-          </div>
-
-        <div class="row bg-white">
-            <span><small> © 2019 SHOP MOMO </small></span>
+              </li>
+              <li class="nav-item dropdown">
+                <button class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Wallets
+                </button>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <form action="/foldovercardcase" method="GET">
+                    <button class="btn btn-light dropdown-item">Foldover Card Case</button>
+                  </form>
+                  <form action="/rexycardholder" method="GET">
+                    <button class="btn btn-light dropdown-item">Rexy Cardholder</button>
+                  </form>
+                  <form action="/rexyzippywallet" method="GET">
+                    <button class="btn btn-light dropdown-item">Rexy Zippy Wallet</button>
+                  </form>
+                  <div class="dropdown-divider"></div>
+                  <form action="/viewallwallets" method="GET">
+                    <button class="btn btn-light dropdown-item">All Wallets</button>
+                  </form>
+                </div>
+              </li>
+          </ul>
         </div>
-
+        <form class="form-inline my-2 my-lg-0" action="/productsearch" method="POST">
+          <div class="ui-widget">
+              <input class="form-control mr-sm-2" id="form-autocomplete" type="search" placeholder="Search" aria-label="Search" name="user_searched_for">
+              <button class="btn btn-light" type="submit"><img src="{{ url_for('static', filename='img/searchicon.png') }}" width="20" height="20" alt="search"></button>
+          </div>
+        </form>
+        <form class="form-inline my-2 my-lg-0" action="/myaccount" method="POST">
+          <button class="btn btn-light"><img src="{{ url_for('static', filename='img/myaccount.jpg') }}" width="25" height="25" alt="myaccount"></button>
+        </form>
+        <form class="form-inline my-2 my-lg-0" action="/wishlist" method="POST">
+          <button class="btn btn-light"><img src="{{ url_for('static', filename='img/heart.png') }}" width="20" height="20" alt="wishlist"></button>
+        </form>
+        <form class="form-inline my-2 my-lg-0" action="/viewcart" method="POST">
+          <button class="btn btn-light"><img src="{{ url_for('static', filename='img/cart.png') }}" width="28" height="28" alt="cart">{{ cart | length }}</button>
+        </form>
+      </nav>
+    </div>
+    <div class="container-fluid clearfix">
+      <div class="row p-5">
+        <div class="col p-1">
+          <div class="col px-md-5">
+            <div class="p-3 register">
+            <h5 class="pb-2">Register</h5>
+            <form action="/register" method="POST">
+              <div class="form-row">
+                  <label for="inputsm" class="col-sm-2 col-form-label">First Name:</label>
+                  <div class="col-xs-2">
+                  <input type="text" class="form-control form-control-sm" name="first_name" placeholder="First name" required="">
+                  <div class="invalid-feedback"></div>
+                  </div>
+              </div>
+              <div class="form-row">
+                  <label for="inputsm" class="col-sm-2 col-form-label">Last Name:</label>
+                  <div class="col-xs-2">
+                  <input type="text" class="form-control form-control-sm" name="last_name" placeholder="Last name" required="">
+                  <div class="invalid-feedback"></div>
+                  </div>
+              </div>
+              <div class="form-row">
+                  <div id="emailMsg"></div> 
+                  <label for="inputsm" class="col-sm-2 col-form-label">Email:</label>
+                  <div class="col-xs-2">
+                  <input type="text" class="form-control form-control-sm" name="email" placeholder="Email" required="">
+                  <div class="invalid-feedback"></div>
+                  </div>
+              </div>
+              <div class="form-row">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">Phone Number:</label>
+                  <div class="col-xs-2">
+                  <input type="text" class="form-control form-control-sm" name="phone_number" placeholder="Phone number" required="">
+                  <div class="invalid-feedback"></div>
+                  </div>
+              </div>
+              <div class="form-row">
+                  <label for="inputsm" class="col-sm-2 col-form-label">Password:</label>
+                  <div class="col-xs-2">
+                  <input type="text" class="form-control form-control-sm" name="password" placeholder="Password" required="">
+                  <div class="invalid-feedback"></div>
+                  </div>
+              </div>
+              <div class="form-row">
+                  <label for="inputsm" class="col-sm-2 col-form-label">Confirm Password:</label>
+                  <div class="col-xs-2">
+                  <input type="text" class="form-control form-control-sm" name="confirm_password" placeholder="Confirm Password" required="">
+                  <div class="invalid-feedback"></div>
+                  </div>
+              </div>
+              <div class="form-row">
+                  <div class="col-xs-2">
+                  <button type="submit" class="btn btn-dark">Register</button>
+                  </div>
+              </div>
+            </form>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            </div>
+          </div>
+        </div>
+        <div class="col p-1">
+          <div class="col px-md-5">
+            <div class="p-3 register">
+            <h5 class="pb-2">Log In</h5>
+            <form action="/login" method="POST">
+                <div class="form-row">
+                    <label for="inputEmail" class="col-sm-2 col-form-label">Email:</label>
+                    <div class="col-xs-2">
+                    <input type="text" class="form-control form-control-sm" name="email" required="">
+                    <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
+                    <div class="col-xs-2">
+                    <input type="text" class="form-control form-control-sm" name="password" required="">
+                    <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-xs-2">
+                    <button type="submit" class="btn btn-dark">Login</button>
+                    </div>
+                </div>
+            </form>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            </div>
+          </div>
+        </div>
       </div>
+      <div class="row border-bottom bg-light">
+        <div class="col">
+          <h6 class="border-bottom pt-5 pb-2">MAIN MENU</h6>
+          <form action="/" method="GET">
+            <button class="btn btn-white">Home</button>
+          </form>
+          <form action="/sitemap" method="GET">
+              <button class="btn btn-white">Site Map</button>
+          </form>
+          <form action="/momomust" method="GET">
+            <button class="btn btn-white">Shop Momo's Musts</button>
+          </form>
+        </div>
+        <div class="col pb-10">
+          <h6 class="border-bottom pt-5 pb-2">CUSTOMER CARE</h6>
+          <form action="/privacy" method="GET">
+              <button class="btn btn-white">Privacy Policy</button>
+          </form>
+          <form action="/shippinginformation" method="GET">
+            <button class="btn btn-white">Shipping Information</button>
+          </form>
+          <form action="/returnsandexchanges" method="GET">
+              <button class="btn btn-white">Returns & Exchanges</button>
+          </form>
+          <form action="/productcare" method="GET">
+            <button class="btn btn-white">Product Care & Repairs</button>
+          </form>
+          <form action="/contactus" method="GET">
+            <button class="btn btn-white">Contact Us</button>
+          </form>
+        </div>
+        <div class="col">
+          <h6 class="border-bottom pt-5 pb-2">MORE</h6>
+          <form action="/about" method="GET">
+            <button class="btn btn-white">About</button>
+          </form>
+          <form action="/searchpage" method="GET">
+            <button class="btn btn-white">Search</button>
+          </form>
+          <button class="btn btn-white"><a href="https://www.instagram.com/shop_momo_collection" class="text-body"><img src="{{ url_for('static', filename='img/instagram.jpg') }}" height="15">Instagram</a></button>
+          </div>
+      </div>
+      <div class="row bg-white">
+        <span><small> © 2019 SHOP MOMO </small></span>
+      </div>
+    </div>
 </body>
 </html>
