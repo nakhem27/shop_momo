@@ -229,7 +229,7 @@ def addtowishlist(routename):
                 return redirect("/"+ str(routename) + "")
     except:
         flash("Please login or register to continue.")
-        return render_template("loginreg.html")
+        return redirect("/myaccount")
 
 def deletefromwishlist():
     delete_from_wishlist = wishlist.delete_wish(request.form)
@@ -241,19 +241,24 @@ def addtocart(routename):
     global ordertotal
     product_id = request.form["product_id"]
     product_price = request.form["product_price"]
-    for item in cart:
-        if str(product_id) == str(item):
-            flash("Sorry, due to high demand, only one unique item per order.")
+    try:
+        if session['user_id']:
+            for item in cart:
+                if str(product_id) == str(item):
+                    flash("Sorry, due to high demand, only one unique item per order.")
+                    return redirect("/"+ str(routename) + "")
+            if len(cart) < 5:
+                cart += product_id
+                ordertotal += int(product_price)
+                flash("This item has been added to your cart.")
+            else:
+                flash("Due to high demand, limit is 5 items per order. Please view your cart to delete an item.")
+            print(cart)
+            print(ordertotal)
             return redirect("/"+ str(routename) + "")
-    if len(cart) < 5:
-        cart += product_id
-        ordertotal += int(product_price)
-        flash("This item has been added to your cart.")
-    else:
-        flash("Due to high demand, limit is 5 items per order. Please view your cart to delete an item.")
-    print(cart)
-    print(ordertotal)
-    return redirect("/"+ str(routename) + "")
+    except:
+        flash("Please login or register to continue.")
+        return redirect("/myaccount")
 
 def deletefromcart():
     global cart
