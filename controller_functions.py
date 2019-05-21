@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, flash, request, session, jsonify, json
+from flask import Flask, render_template, redirect, flash, request, session
 from config import app, db, func, IntegrityError, bcrypt, re, randint
 from models import customer, shipping_address, billing_address, order, order_item, product, product_category, category, wishlist
 
@@ -204,7 +204,6 @@ def wishlistpage():
 def addtowishlist(routename):
     global listofviewed
     global cart
-    
     updaterecently()
     try:
         if session['user_id']:
@@ -240,7 +239,6 @@ def deletefromwishlist():
 def addtocart(routename):
     global cart
     global ordertotal
-    
     product_id = request.form["product_id"]
     product_price = request.form["product_price"]
     for item in cart:
@@ -274,11 +272,9 @@ def viewcart():
     session['shipping_id'] = None
     session['billing_id'] = None
     print("Session shipping/billing: ", session['shipping_id'], session['billing_id'])
-    
     updaterecently()
     allproducts = product.query.all()
     print(ordertotal)
-
     try:
         if session['user_id']:
             login_id = session['user_id']
@@ -301,7 +297,6 @@ def checkoutpage():
         shipping_addresses = db.session.query(shipping_address).filter(shipping_address.customer_id == login_id).all()
         billing_addresses = db.session.query(billing_address).filter(billing_address.customer_id == login_id).all()
         return render_template("checkout.html", shipping_addresses = shipping_addresses, billing_addresses = billing_addresses, ordertotal = ordertotal, cart = cart, allproducts = allproducts, login_id = login_id)
-
 
 #ORDERPROCESSING
 def verify_shipping_address():

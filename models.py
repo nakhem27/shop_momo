@@ -1,4 +1,4 @@
-from config import db, re, func, flash, bcrypt, jsonify
+from config import db, re, func, flash, bcrypt
 
 class customer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -180,7 +180,6 @@ class billing_address(db.Model):
         flash("You Deleted This Billing Address.")
         return delete_billing_address
 
-# Many to Many table
 class order(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
@@ -212,7 +211,6 @@ class product(db.Model):
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
 
-# Many to Many table
 class product_category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
@@ -227,12 +225,6 @@ class category(db.Model):
     category = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
-
-    def __repr__(self):
-        return '{}'.format(self.category)
-
-    def as_dict(self):
-        return {'name': self.category}
 
 class wishlist(db.Model):
     id = db.Column(db.Integer, primary_key=True)

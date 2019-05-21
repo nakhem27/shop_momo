@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import flash
-from flask import jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from sqlalchemy.sql import func
@@ -13,7 +12,6 @@ app = Flask(__name__)
 bcrypt = Bcrypt(app)
 app.secret_key = "ajdflakdjfl"
 
-# change to shop_momo ..... 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shop_momo.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
