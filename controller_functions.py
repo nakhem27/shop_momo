@@ -368,11 +368,13 @@ def submitordertodb2():
 
 def aftercheckout():
     global cart
+    global ordertotal
     first_name = session['first_name']
     order_query = order.query.with_entities(order.id).all()
     order_id = order_query[len(order_query)-1]
     real_order_id = order_id[0]
     cart = []
+    ordertotal = 0
     return render_template("aftercheckout.html", first_name = first_name, order_id = real_order_id)
 
 #BOTTOMNAVIGATION
